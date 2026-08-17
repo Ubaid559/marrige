@@ -1268,13 +1268,23 @@ bot.catch((error) => {
 // START BOT
 // =====================================================
 
+const http = require("http");
+
+const PORT = process.env.PORT || 10000;
+
+http.createServer((req, res) => {
+  res.writeHead(200, {
+    "Content-Type": "text/plain"
+  });
+
+  res.end("Marriage Bot is running");
+}).listen(PORT, "0.0.0.0", () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
 bot.launch();
 
 console.log("Marriage Bot is running...");
-
-// =====================================================
-// STOP
-// =====================================================
 
 process.once("SIGINT", () => bot.stop("SIGINT"));
 
